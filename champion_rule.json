@@ -1,0 +1,20 @@
+{
+  "_note": "Written and committed BEFORE the final evaluation run. evaluate.py reads this file and applies it mechanically.",
+  "primary_metric": "macro_f1",
+  "primary_direction": "higher",
+  "min_improvement": 0.02,
+  "guardrails": {
+    "max_p95_latency_ratio": 4.0,
+    "max_per_class_f1_drop": 0.03
+  },
+  "tie_breaker": "keep_champion",
+  "metric_directions": {
+    "accuracy": "higher",
+    "macro_f1": "higher",
+    "macro_precision": "higher",
+    "macro_recall": "higher",
+    "avg_latency_ms": "lower",
+    "p95_latency_ms": "lower",
+    "total_inference_s": "lower"
+  }
+}
