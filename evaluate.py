@@ -33,6 +33,15 @@ from config import (
 LATENCY_SAMPLES = 100  # articles timed one at a time for avg / p95 latency
 
 
+def _pin(pkg):
+    from importlib.metadata import version
+    return f"{pkg}=={version(pkg)}"
+
+
+# Explicit so MLflow doesn't try to pin packages we never use (e.g. torchvision)
+PIP_REQS = [_pin(p) for p in ("mlflow", "transformers", "torch", "sentencepiece", "protobuf")]
+
+
 def f1_key(c):
     return f"f1_{c.replace('/', '_')}"
 
@@ -119,6 +128,7 @@ def evaluate_model(role, spec, df):
         info = mlflow.transformers.log_model(
             transformers_model=pipe, name="model", task="text-classification",
             input_example=["Oil prices jump after supply cuts."],
+            pip_requirements=PIP_REQS,
         )
         print(f"[{role}] {hf_id}: macro-F1={f1:.4f} acc={metrics['accuracy']:.4f} "
               f"p95={p95_ms:.1f}ms")

@@ -1,0 +1,8 @@
+metric,champion,challenger,delta_b_minus_a,better_is
+accuracy,0.95,0.9525,0.0025,higher
+macro_f1,0.9501,0.9526,0.0025,higher
+macro_precision,0.9506,0.9533,0.0027,higher
+macro_recall,0.95,0.9525,0.0025,higher
+avg_latency_ms,50.1819,39.8706,-10.3112,lower
+p95_latency_ms,57.14,48.5041,-8.6359,lower
+total_inference_s,19.6458,11.0661,-8.5797,lower
